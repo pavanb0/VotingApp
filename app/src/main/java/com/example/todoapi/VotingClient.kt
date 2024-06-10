@@ -40,6 +40,11 @@ class VotingClient : ComponentActivity() {
         }
     }
 
+//    override fun onDestroy() {
+//        super.onDestroy()
+//
+//    }
+
     private fun sendVote(selectedItem: String,email:String,password:String) {
 
          Toast.makeText(this,"SelectedItem "+ selectedItem+email+password,Toast.LENGTH_SHORT).show()

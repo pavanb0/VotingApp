@@ -88,17 +88,21 @@ class MainActivity : ComponentActivity() {
                     if (response.isSuccessful) {
                         val jsonResponse = JSONObject(responseBody.toString())
                         val message = jsonResponse.getString("message")
+                        val admin = jsonResponse.getString("admin")
 
+                        if (admin == "true") {
+                            val intent = Intent(this@MainActivity, VotingAdmin::class.java)
+                            startActivity(intent)
+//                            Toast.makeText(this@MainActivity, "Message: Activity Start Faliure", Toast.LENGTH_SHORT).show()
 
-                        Toast.makeText(this@MainActivity, "Message: $message",  Toast.LENGTH_SHORT).show()
-                        val s = Intent(this@MainActivity,VotingClient::class.java)
-                        s.putExtra("email",username)
-                        s.putExtra("password",password)
-                        startActivity(s)
-
+                        } else {
+                            val intent = Intent(this@MainActivity, VotingClient::class.java)
+                            intent.putExtra("email", username)
+                            intent.putExtra("password", password)
+                            startActivity(intent)
+                        }
                     } else {
                         Toast.makeText(this@MainActivity, "Login unsuccessful", Toast.LENGTH_SHORT).show()
-
                     }
                 }
             }

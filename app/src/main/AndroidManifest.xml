@@ -16,6 +16,9 @@
         android:theme="@style/Theme.TodoApi"
         tools:targetApi="31">
         <activity
+            android:name=".VotingAdmin"
+            android:exported="false" />
+        <activity
             android:name=".VotingClient"
             android:exported="false" />
         <activity

@@ -8,6 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/tv_vote"
         android:text="Vote"
         android:textSize="60dp"
         />
@@ -15,6 +16,7 @@
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="499dp"
+
         android:gravity="center"
         android:orientation="vertical">
 
@@ -23,28 +25,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="19dp"
-            android:text="MNS" />
+            android:text="APPDEV" />
 
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="19dp"
-            android:text="BJP" />
+            android:text="KOOEF" />
 
         <RadioButton
             android:id="@+id/radioButton3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="19dp"
-            android:text="Shivsena" />
+            android:text="fiifj" />
 
         <RadioButton
             android:id="@+id/radioButton4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="19dp"
-            android:text="SEOEO" />
+            android:text="fjeifj" />
     </RadioGroup>
 
     <LinearLayout
@@ -56,7 +58,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Selected Item"
+        android:text="Please Vote 😊"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"/>
     </LinearLayout>

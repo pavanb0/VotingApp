@@ -37,8 +37,12 @@ class MainActivity : ComponentActivity() {
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
+            if(email == "" || password == ""){
+                Toast.makeText(this@MainActivity,"Enter Email and Password",Toast.LENGTH_SHORT).show()
+            }else{
             progresBar.visibility = View.VISIBLE
             sendlogin(email, password)
+            }
         }
 
         registerButton.setOnClickListener {
@@ -47,23 +51,23 @@ class MainActivity : ComponentActivity() {
                 Registration::class.java
             )
             startActivity(i)
-            Toast.makeText(this, "Register button clicked", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "Register button clicked", Toast.LENGTH_SHORT).show()
         }
 
 
     }
 
     private fun sendlogin(username: String, password: String) {
-        val url = "http://192.168.0.108:3000/login" // Replace with your server address
+        val url = "http://192.168.137.214:3000/login"
         val jsonObject = JSONObject()
-        jsonObject.put("username", username)
+        jsonObject.put("email", username)
         jsonObject.put("password", password)
 
-        // Create JSON request body
+
         val jsonMediaType = "application/json; charset=utf-8".toMediaType()
         val requestBody = jsonObject.toString().toRequestBody(jsonMediaType)
 
-        // Build request
+
         val request = Request.Builder()
             .url(url)
             .post(requestBody)
@@ -87,11 +91,18 @@ class MainActivity : ComponentActivity() {
                     progresBar.visibility = View.GONE
                     if (response.isSuccessful) {
                         val jsonResponse = JSONObject(responseBody.toString())
-                        val message = jsonResponse.getString("message")
-                        val admin = jsonResponse.getString("admin")
 
+                        val admin = jsonResponse.getString("admin")
+                        val token = jsonResponse.getString("token")
+                        Toast.makeText(this@MainActivity, "Login successful $admin $token", Toast.LENGTH_SHORT).show()
+                        val sh = getSharedPreferences("MyToken", MODE_PRIVATE)
+                        val editor = sh.edit()
+                        editor.putString("token", token)
+                        editor.apply()
                         if (admin == "true") {
                             val intent = Intent(this@MainActivity, VotingAdmin::class.java)
+                            intent.putExtra("email", username)
+                            intent.putExtra("password", password)
                             startActivity(intent)
 //                            Toast.makeText(this@MainActivity, "Message: Activity Start Faliure", Toast.LENGTH_SHORT).show()
 
